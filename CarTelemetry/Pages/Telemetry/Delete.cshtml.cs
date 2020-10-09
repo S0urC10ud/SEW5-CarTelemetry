@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CarTelemetry.Data;
 using CarTelemetry.Model;
 
-namespace CarTelemetry.Pages
+namespace CarTelemetry.Pages.Telemetry
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace CarTelemetry.Pages
         }
 
         [BindProperty]
-        public Car Car { get; set; }
+        public TelemetryData TelemetryData { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace CarTelemetry.Pages
                 return NotFound();
             }
 
-            Car = await _context.Car.FirstOrDefaultAsync(m => m.CarId == id);
+            TelemetryData = await _context.TelemetryData.FirstOrDefaultAsync(m => m.IdTelemetryData == id);
 
-            if (Car == null)
+            if (TelemetryData == null)
             {
                 return NotFound();
             }
@@ -45,20 +45,18 @@ namespace CarTelemetry.Pages
                 return NotFound();
             }
 
-            Car = await _context.Car.FindAsync(id);
 
-            if (Car != null)
+
+            TelemetryData = await _context.TelemetryData.FindAsync(id);
+            int carId = TelemetryData.CarId;
+
+            if (TelemetryData != null)
             {
-                _context.TelemetryData
-                    .ToList()
-                    .Where(data => data.CarId == Car.CarId)
-                    .ToList()
-                    .ForEach(n => _context.TelemetryData.Remove(n));
-                _context.Car.Remove(Car);
+                _context.TelemetryData.Remove(TelemetryData);
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Telemetry/Index", new { pageId = carId });
         }
     }
 }

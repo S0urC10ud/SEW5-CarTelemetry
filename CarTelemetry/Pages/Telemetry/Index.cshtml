@@ -1,0 +1,53 @@
+﻿@page "{pageid:int}"
+@model CarTelemetry.Pages.Telemetry.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Telemetry Data for Car Nr. @Model.PageId</h1>
+
+<p>
+    <a asp-page="Create" asp-route-carId="@Model.PageId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TelemetryData[0].Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelemetryData[0].Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelemetryData[0].Speed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TelemetryData[0].Capacity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.TelemetryData.Where((element)=>element.CarId.Equals(Model.PageId))) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdTelemetryData">Edit</a> | 
+                <a asp-page="./Delete" asp-route-id="@item.IdTelemetryData">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

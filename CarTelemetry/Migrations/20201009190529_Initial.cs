@@ -11,16 +11,16 @@ namespace CarTelemetry.Migrations
                 name: "Car",
                 columns: table => new
                 {
-                    IdCar = table.Column<int>(nullable: false)
+                    CarId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Typ = table.Column<int>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    ModifiedAt = table.Column<DateTime>(nullable: false)
+                    ModifiedAt = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    Typ = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Car", x => x.IdCar);
+                    table.PrimaryKey("PK_Car", x => x.CarId);
                 });
 
             migrationBuilder.CreateTable(
@@ -29,27 +29,27 @@ namespace CarTelemetry.Migrations
                 {
                     IdTelemetryData = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Latitude = table.Column<float>(nullable: false),
-                    Longitude = table.Column<float>(nullable: false),
-                    Speed = table.Column<float>(nullable: false),
-                    Capacity = table.Column<float>(nullable: false),
-                    CarIdCar = table.Column<int>(nullable: true)
+                    Latitude = table.Column<decimal>(type: "decimal(18, 10)", nullable: false),
+                    Longitude = table.Column<decimal>(type: "decimal(18, 10)", nullable: false),
+                    Speed = table.Column<decimal>(type: "decimal(18, 3)", nullable: false),
+                    Capacity = table.Column<decimal>(type: "decimal(18, 10)", nullable: false),
+                    CarId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TelemetryData", x => x.IdTelemetryData);
                     table.ForeignKey(
-                        name: "FK_TelemetryData_Car_CarIdCar",
-                        column: x => x.CarIdCar,
+                        name: "FK_TelemetryData_Car_CarId",
+                        column: x => x.CarId,
                         principalTable: "Car",
-                        principalColumn: "IdCar",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "CarId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TelemetryData_CarIdCar",
+                name: "IX_TelemetryData_CarId",
                 table: "TelemetryData",
-                column: "CarIdCar");
+                column: "CarId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

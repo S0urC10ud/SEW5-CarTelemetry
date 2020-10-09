@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using CarTelemetry.Data;
 using CarTelemetry.Model;
 
-namespace CarTelemetry.Pages
+namespace CarTelemetry.Pages.Telemetry
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace CarTelemetry.Pages
         }
 
         [BindProperty]
-        public Car Car { get; set; }
+        public TelemetryData TelemetryData { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +30,9 @@ namespace CarTelemetry.Pages
                 return NotFound();
             }
 
-            Car = await _context.Car.FirstOrDefaultAsync(m => m.CarId == id);
+            TelemetryData = await _context.TelemetryData.FirstOrDefaultAsync(m => m.IdTelemetryData == id);
 
-            if (Car == null)
+            if (TelemetryData == null)
             {
                 return NotFound();
             }
@@ -48,9 +48,7 @@ namespace CarTelemetry.Pages
                 return Page();
             }
 
-            _context.Attach(Car).State = EntityState.Modified;
-            _context.Entry(Car).Property(x => x.CreatedAt).IsModified = false;
-
+            _context.Attach(TelemetryData).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +56,7 @@ namespace CarTelemetry.Pages
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CarExists(Car.CarId))
+                if (!TelemetryDataExists(TelemetryData.IdTelemetryData))
                 {
                     return NotFound();
                 }
@@ -68,12 +66,12 @@ namespace CarTelemetry.Pages
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Telemetry/Index", new { pageId = TelemetryData.CarId });
         }
 
-        private bool CarExists(int id)
+        private bool TelemetryDataExists(int id)
         {
-            return _context.Car.Any(e => e.CarId == id);
+            return _context.TelemetryData.Any(e => e.IdTelemetryData == id);
         }
     }
 }

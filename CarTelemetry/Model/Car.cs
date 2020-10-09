@@ -23,11 +23,11 @@ namespace CarTelemetry.Model
     public class Car : Trackable
     {
         [Key]
-        public int IdCar { get; set; }
+        public int CarId { get; set; }
         public string Name { get; set; }
         public CarType Typ { get; set; }
 
 
-        public ICollection<TelemetryData> TelemetryData { get; set; } 
+        public ICollection<TelemetryData> TelemetryData { get; set; } = new List<TelemetryData>();
     }
 }

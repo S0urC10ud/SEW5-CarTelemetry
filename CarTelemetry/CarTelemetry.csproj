@@ -6,13 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20201002141255_Initia.cs" />
-    <Compile Remove="Migrations\20201002141255_Initia.Designer.cs" />
-    <Compile Remove="Migrations\20201002141325_Initial.cs" />
-    <Compile Remove="Migrations\20201002141325_Initial.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="EntityFrameworkCore.Triggers" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
@@ -23,10 +16,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\Telemetry\" />
   </ItemGroup>
 
 </Project>

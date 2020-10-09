@@ -38,6 +38,50 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Car.IdCar">Edit</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.Car.CarId">Edit</a> |
     <a asp-page="./Index">Back to List</a>
+</div>
+
+<h1>Associated Telemetry Data</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.TelemetryData.ToList()[0].Latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.TelemetryData.ToList()[0].Longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.TelemetryData.ToList()[0].Speed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car.TelemetryData.ToList()[0].Capacity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+@foreach (var item in Model.Car.TelemetryData.ToList().Where((element)=>element.CarId == Model.Car.CarId)) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div>
+    <a asp-page="/Telemetry/Index" asp-route-pageid="@Model.Car.CarId">Edit associated Data</a>
 </div>

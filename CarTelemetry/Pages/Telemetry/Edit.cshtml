@@ -1,0 +1,50 @@
+﻿@page "Language="
+@model CarTelemetry.Pages.Telemetry.EditModel
+
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>TelemetryData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TelemetryData.IdTelemetryData" />
+            <div class="form-group">
+                <label asp-for="TelemetryData.Latitude" class="control-label"></label>
+                <input asp-for="TelemetryData.Latitude" class="form-control" />
+                <span asp-validation-for="TelemetryData.Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelemetryData.Longitude" class="control-label"></label>
+                <input asp-for="TelemetryData.Longitude" class="form-control" />
+                <span asp-validation-for="TelemetryData.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelemetryData.Speed" class="control-label"></label>
+                <input asp-for="TelemetryData.Speed" class="form-control" />
+                <span asp-validation-for="TelemetryData.Speed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TelemetryData.Capacity" class="control-label"></label>
+                <input asp-for="TelemetryData.Capacity" class="form-control" />
+                <span asp-validation-for="TelemetryData.Capacity" class="text-danger"></span>
+            </div>
+            <div style="display:none">
+                <input asp-for="TelemetryData.CarId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>

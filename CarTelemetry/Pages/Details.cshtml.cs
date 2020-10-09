@@ -28,12 +28,13 @@ namespace CarTelemetry.Pages
                 return NotFound();
             }
 
-            Car = await _context.Car.FirstOrDefaultAsync(m => m.IdCar == id);
+            Car = await _context.Car.Include(s=>s.TelemetryData).FirstOrDefaultAsync(m => m.CarId == id);
 
             if (Car == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }

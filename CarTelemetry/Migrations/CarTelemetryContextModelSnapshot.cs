@@ -21,7 +21,7 @@ namespace CarTelemetry.Migrations
 
             modelBuilder.Entity("CarTelemetry.Model.Car", b =>
                 {
-                    b.Property<int>("IdCar")
+                    b.Property<int>("CarId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -38,7 +38,7 @@ namespace CarTelemetry.Migrations
                     b.Property<int>("Typ")
                         .HasColumnType("int");
 
-                    b.HasKey("IdCar");
+                    b.HasKey("CarId");
 
                     b.ToTable("Car");
                 });
@@ -50,24 +50,24 @@ namespace CarTelemetry.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<float>("Capacity")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Capacity")
+                        .HasColumnType("decimal(18, 10)");
 
-                    b.Property<int?>("CarIdCar")
+                    b.Property<int>("CarId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Latitude")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Latitude")
+                        .HasColumnType("decimal(18, 10)");
 
-                    b.Property<float>("Longitude")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Longitude")
+                        .HasColumnType("decimal(18, 10)");
 
-                    b.Property<float>("Speed")
-                        .HasColumnType("real");
+                    b.Property<decimal>("Speed")
+                        .HasColumnType("decimal(18, 3)");
 
                     b.HasKey("IdTelemetryData");
 
-                    b.HasIndex("CarIdCar");
+                    b.HasIndex("CarId");
 
                     b.ToTable("TelemetryData");
                 });
@@ -76,7 +76,9 @@ namespace CarTelemetry.Migrations
                 {
                     b.HasOne("CarTelemetry.Model.Car", null)
                         .WithMany("TelemetryData")
-                        .HasForeignKey("CarIdCar");
+                        .HasForeignKey("CarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
