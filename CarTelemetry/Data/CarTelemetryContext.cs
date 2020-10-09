@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using CarTelemetry.Model;
+using EntityFrameworkCore.Triggers;
 
 namespace CarTelemetry.Data
 {
-    public class CarTelemetryContext : DbContext
+    public class CarTelemetryContext : DbContextWithTriggers
     {
         public CarTelemetryContext (DbContextOptions<CarTelemetryContext> options)
             : base(options)

@@ -38,6 +38,12 @@
                 @Html.DisplayFor(modelItem => item.Typ)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedAt)
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.IdCar">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.IdCar">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.IdCar">Delete</a>
