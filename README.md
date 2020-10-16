@@ -7,16 +7,23 @@ The access is modelled with a 1:n 3NF relationship using the Entity Framework. F
 
 ## Demo Images
 The index page:<br/>
+<kbd align="center">
 <img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/index.png" width="50%"/>
+</kbd>
+
 
 Create a car:<br/>
+<kbd align="center">
 <img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/createCar.png" width="50%"/>
-
+</kbd>
 View the details of a car:<br/>
+<kbd align="center">
 <img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/carDetails.png" width="50%"/>
-
+</kbd>
 Show telemetry data:<br/>
+<kbd align="center">
 <img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/showTelemetry.png" width="50%"/>
+</kbd>
 
 ## Getting started
-Open the project in visual studio and type "Update-Databae" in the PackageManager-Console.
+Open the project in visual studio and type "Update-Database" in the PackageManager-Console.
