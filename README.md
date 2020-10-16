@@ -5,6 +5,18 @@ Alternatively, you can override the "connectionString" in the appsettings.json F
 
 The access is modelled with a 1:n 3NF relationship using the Entity Framework. Furthermore, the NuGet-Package EntityFrameworkCore.Triggers is used to set the ModifiedAt and the CreatedAt timestamps.
 
+## Demo Images
+The index page:<br/>
+<img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/index.png" width="50%"/>
+
+Create a car:<br/>
+<img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/createCar.png" width="50%"/>
+
+View the details of a car:<br/>
+<img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/carDetails.png" width="50%"/>
+
+Show telemetry data:<br/>
+<img src="https://github.com/S0urC10ud/SEW5-CarTelemetry/blob/master/demoImages/showTelemetry.png" width="50%"/>
 
 ## Getting started
 Open the project in visual studio and type "Update-Databae" in the PackageManager-Console.
