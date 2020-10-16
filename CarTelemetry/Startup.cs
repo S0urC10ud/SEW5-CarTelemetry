@@ -25,11 +25,11 @@ namespace CarTelemetry
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            //TODO: https://github.com/NickStrupat/EntityFramework.Triggers - add Triggers
-
 
             services.AddDbContext<CarTelemetryContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("CarTelemetryContext")));
+
+            services.AddControllers(); //Very important to start the REST-Controller
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +53,9 @@ namespace CarTelemetry
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers(); //REST-API
             });
+
         }
     }
 }
