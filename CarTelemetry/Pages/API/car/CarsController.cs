@@ -48,12 +48,14 @@ namespace CarTelemetry.Pages.API.car
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCar(int id, Car car)
         {
-            if (id != car.CarId)
-            {
-                return BadRequest();
-            }
+            car.CarId = id;
 
             _context.Entry(car).State = EntityState.Modified;
+
+
+            _context.Entry(car).State = EntityState.Modified;
+            _context.Entry(car).Property(x => x.CreatedAt).IsModified = false;
+            _context.Entry(car).Property(x => x.ModifiedAt).IsModified = false;
 
             try
             {

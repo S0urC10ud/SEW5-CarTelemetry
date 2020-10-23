@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using AspNetCore.RouteAnalyzer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CarTelemetry.Data;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace CarTelemetry
 {
@@ -30,6 +34,7 @@ namespace CarTelemetry
                     options.UseSqlServer(Configuration.GetConnectionString("CarTelemetryContext")));
 
             services.AddControllers(); //Very important to start the REST-Controller
+            services.AddRouteAnalyzer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,10 +57,24 @@ namespace CarTelemetry
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages();
-                endpoints.MapControllers(); //REST-API
-            });
+                endpoints.MapControllers();
+                endpoints.MapGet("/routes", request =>
+                {
+                    request.Response.Headers.Add("content-type", "application/json");
 
+                    var ep = endpoints.DataSources.First().Endpoints.Select(e => e as RouteEndpoint);
+                    return request.Response.WriteAsync(
+                        JsonSerializer.Serialize(
+                            ep.Select(e => new
+                            {
+                                Method = ((HttpMethodMetadata)e.Metadata.First(m => m.GetType() == typeof(HttpMethodMetadata))).HttpMethods.First(),
+                                Route = e.RoutePattern.RawText
+                            })
+                        )
+                    );
+                });
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
