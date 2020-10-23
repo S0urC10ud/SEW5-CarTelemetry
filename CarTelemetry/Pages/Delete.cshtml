@@ -22,9 +22,7 @@
             @Html.DisplayNameFor(model => model.Car.Typ)
         </dt>
         <dd class="col-sm-10">
-            <select asp-for="Car.Typ" asp-items="Html.GetEnumSelectList<CarType>()">
-                <option selected="selected" value="">Please select</option>
-            </select>
+            @Html.DisplayFor(model => model.Car.Typ)
         </dd>
     </dl>
     
