@@ -1,6 +1,8 @@
 # SEW5-CarTelemetry
 A small school-based project with ASP .net Core to model telemetry data for cars. CRUD-Razor Page Scaffholds are used to display and modify the active state of used Local-DB.
 
+I created this repository to help out my class mates as some are struggling a little bit with ASP.net.
+
 Alternatively, you can override the "connectionString" in the appsettings.json File to use a diffrent relational Database. 
 
 The access is modelled with a 1:n 3NF relationship using the Entity Framework. Furthermore, the NuGet-Package EntityFrameworkCore.Triggers is used to set the ModifiedAt and the CreatedAt timestamps.
