@@ -1,5 +1,5 @@
 # SEW5-CarTelemetry
-A small school-based project with ASP .net Core to model telemetry data for cars and access them via a REST-API. CRUD-Razor Page Scaffholds are used to display and modify the active state of used Local-DB.
+A small school-based project with ASP.net Core to model telemetry data for cars and access them via a REST-API. CRUD-Razor Page Scaffholds are used to display and modify the active state of used Local-DB.
 
 I created this repository to help out my class mates as some are struggling a little bit with ASP.net.
 
